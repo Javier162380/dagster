@@ -70,7 +70,8 @@ export function tokenizedValueFromString(
   str: string,
   providers: SuggestionProvider[],
 ): TokenizingFieldValue {
-  const [token = '', value = ''] = str.split(':');
+  const [token = '', ...remaining] = str.split(':');
+  const value = remaining.join(':');
 
   if (findProviderByToken(token, providers)) {
     if (token && value) {
